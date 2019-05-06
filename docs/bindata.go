@@ -25,6 +25,15 @@ func bindata_read(data []byte, name string) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
+var _config_yml = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\xc9\x48\xcd\x4d\xb5\x52\xc8\x4a\xcd\xae\xcc\xc9\xd1\x05\xf3\x74\x73\x33\x53\xf2\x32\xd3\x33\x4a\x00\x01\x00\x00\xff\xff\x4c\x27\x3d\x30\x1c\x00\x00\x00")
+
+func config_yml() ([]byte, error) {
+	return bindata_read(
+		_config_yml,
+		"_config.yml",
+	)
+}
+
 var _bindata_go = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x01\x00\x00\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00")
 
 func bindata_go() ([]byte, error) {
@@ -74,9 +83,10 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() ([]byte, error){
-	"bindata.go": bindata_go,
-	"gen.go":     gen_go,
-	"index.html": index_html,
+	"_config.yml": config_yml,
+	"bindata.go":  bindata_go,
+	"gen.go":      gen_go,
+	"index.html":  index_html,
 }
 
 // AssetDir returns the file names below a certain
@@ -120,7 +130,8 @@ type _bintree_t struct {
 }
 
 var _bintree = &_bintree_t{nil, map[string]*_bintree_t{
-	"bindata.go": &_bintree_t{bindata_go, map[string]*_bintree_t{}},
-	"gen.go":     &_bintree_t{gen_go, map[string]*_bintree_t{}},
-	"index.html": &_bintree_t{index_html, map[string]*_bintree_t{}},
+	"_config.yml": &_bintree_t{config_yml, map[string]*_bintree_t{}},
+	"bindata.go":  &_bintree_t{bindata_go, map[string]*_bintree_t{}},
+	"gen.go":      &_bintree_t{gen_go, map[string]*_bintree_t{}},
+	"index.html":  &_bintree_t{index_html, map[string]*_bintree_t{}},
 }}

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"fmt"
 	"github.com/autom8ter/tasks/docs"
 	"github.com/autom8ter/tasks/sdk/go/tasks"
 	"github.com/golang/protobuf/jsonpb"
@@ -189,6 +190,7 @@ var serveCmd = &cobra.Command{
 			}
 		})
 		withMetrics(router)
+		fmt.Println("starting proxy server on http://localhost:8080")
 		err := http.ListenAndServe(":8080", router)
 		if err != nil {
 			log.Println(err.Error())
