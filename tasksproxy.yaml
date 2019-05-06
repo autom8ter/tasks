@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tasksproxy
+  labels:
+    app: tasksproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasksproxy
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: tasksproxy
+    spec:
+      containers:
+        - name: tasksproxy
+          image: gcr.io/autom8ter-19/tasksproxy
+
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tasksproxy
+  labels:
+    app: tasksproxy
+spec:
+  type: LoadBalancer
+  selector:
+    app: tasksproxy
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080

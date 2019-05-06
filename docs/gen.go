@@ -1,0 +1,3 @@
+//go:generate go-bindata  -pkg docs ./...
+
+package docs

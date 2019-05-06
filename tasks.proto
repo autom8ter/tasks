@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package tasks;
+
+import "google/protobuf/empty.proto";
+
+service TaskService{
+    rpc Create(Task) returns(Task){};
+    rpc Read(IDRequest) returns(Task){};
+    rpc Update(Task) returns(google.protobuf.Empty){};
+    rpc Delete(IDRequest) returns(google.protobuf.Empty){};
+    rpc List(google.protobuf.Empty) returns(stream Task){};
+}
+
+message IDRequest {
+    int64 id=1;
+}
+
+message Task {
+    int64 id=1;
+    string title=2;
+    string category=3;
+    Priority priority=4;
+    string content=5;
+    string due_date=6;
+}
+
+enum Priority {
+    Low=0;
+    Medium=1;
+    High=2;
+}

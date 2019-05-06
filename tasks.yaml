@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tasks
+  labels:
+    app: tasks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: tasks
+    spec:
+      containers:
+        - name: tasks
+          image: gcr.io/autom8ter-19/tasks
+
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tasks
+  labels:
+    app: tasks
+spec:
+  type: LoadBalancer
+  selector:
+    app: tasks
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
