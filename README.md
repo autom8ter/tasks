@@ -29,7 +29,7 @@
 - [x] Rest Gateway API (Kubernetes)
 
 ### Documentation
-- [x] [GRPC Protocol Documentation]()
+- [x] [GRPC Protocol Documentation](https://autom8ter.github.io/tasks/.)
 
 ### Build/CI/Deployment
 
