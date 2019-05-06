@@ -4,6 +4,8 @@ package tasks;
 
 import "google/protobuf/empty.proto";
 
+
+//TaskService serves task resources
 service TaskService{
     rpc Create(Task) returns(Task){};
     rpc Read(IDRequest) returns(Task){};
@@ -12,10 +14,13 @@ service TaskService{
     rpc List(google.protobuf.Empty) returns(stream Task){};
 }
 
+//IDRequest is a message used for identifying a task
 message IDRequest {
+    //id is the id of the task to retrieve
     int64 id=1;
 }
 
+//Task is a generic task message
 message Task {
     int64 id=1;
     string title=2;
@@ -25,6 +30,7 @@ message Task {
     string due_date=6;
 }
 
+//Priority is an enum used to describe task priority levels
 enum Priority {
     Low=0;
     Medium=1;

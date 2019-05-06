@@ -46,6 +46,9 @@ namespace Tasks {
 
   }
   #region Enums
+  /// <summary>
+  ///Priority is an enum used to describe task priority levels
+  /// </summary>
   public enum Priority {
     [pbr::OriginalName("Low")] Low = 0,
     [pbr::OriginalName("Medium")] Medium = 1,
@@ -55,6 +58,9 @@ namespace Tasks {
   #endregion
 
   #region Messages
+  /// <summary>
+  ///IDRequest is a message used for identifying a task
+  /// </summary>
   public sealed partial class IDRequest : pb::IMessage<IDRequest> {
     private static readonly pb::MessageParser<IDRequest> _parser = new pb::MessageParser<IDRequest>(() => new IDRequest());
     private pb::UnknownFieldSet _unknownFields;
@@ -92,6 +98,9 @@ namespace Tasks {
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
     private long id_;
+    /// <summary>
+    ///id is the id of the task to retrieve
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long Id {
       get { return id_; }
@@ -184,6 +193,9 @@ namespace Tasks {
 
   }
 
+  /// <summary>
+  ///Task is a generic task message
+  /// </summary>
   public sealed partial class Task : pb::IMessage<Task> {
     private static readonly pb::MessageParser<Task> _parser = new pb::MessageParser<Task>(() => new Task());
     private pb::UnknownFieldSet _unknownFields;

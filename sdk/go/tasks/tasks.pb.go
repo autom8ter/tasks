@@ -23,6 +23,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+//Priority is an enum used to describe task priority levels
 type Priority int32
 
 const (
@@ -51,7 +52,9 @@ func (Priority) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_b3834c8ef8464a3f, []int{0}
 }
 
+//IDRequest is a message used for identifying a task
 type IDRequest struct {
+	//id is the id of the task to retrieve
 	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -90,6 +93,7 @@ func (m *IDRequest) GetId() int64 {
 	return 0
 }
 
+//Task is a generic task message
 type Task struct {
 	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`

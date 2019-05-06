@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Enum Priority
 
+/** Priority is an enum used to describe task priority levels */
 typedef GPB_ENUM(Priority) {
   /**
    * Value used if any message's field encounters a value that is not defined
@@ -72,8 +73,12 @@ typedef GPB_ENUM(IDRequest_FieldNumber) {
   IDRequest_FieldNumber_Id_p = 1,
 };
 
+/**
+ * IDRequest is a message used for identifying a task
+ **/
 @interface IDRequest : GPBMessage
 
+/** id is the id of the task to retrieve */
 @property(nonatomic, readwrite) int64_t id_p;
 
 @end
@@ -89,6 +94,9 @@ typedef GPB_ENUM(Task_FieldNumber) {
   Task_FieldNumber_DueDate = 6,
 };
 
+/**
+ * Task is a generic task message
+ **/
 @interface Task : GPBMessage
 
 @property(nonatomic, readwrite) int64_t id_p;

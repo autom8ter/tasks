@@ -15,6 +15,10 @@ public final class Tasks {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * <pre>
+   *Priority is an enum used to describe task priority levels
+   * </pre>
+   *
    * Protobuf enum {@code tasks.Priority}
    */
   public enum Priority
@@ -126,11 +130,19 @@ public final class Tasks {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     *id is the id of the task to retrieve
+     * </pre>
+     *
      * <code>int64 id = 1;</code>
      */
     long getId();
   }
   /**
+   * <pre>
+   *IDRequest is a message used for identifying a task
+   * </pre>
+   *
    * Protobuf type {@code tasks.IDRequest}
    */
   public  static final class IDRequest extends
@@ -210,6 +222,10 @@ public final class Tasks {
     public static final int ID_FIELD_NUMBER = 1;
     private long id_;
     /**
+     * <pre>
+     *id is the id of the task to retrieve
+     * </pre>
+     *
      * <code>int64 id = 1;</code>
      */
     public long getId() {
@@ -374,6 +390,10 @@ public final class Tasks {
       return builder;
     }
     /**
+     * <pre>
+     *IDRequest is a message used for identifying a task
+     * </pre>
+     *
      * Protobuf type {@code tasks.IDRequest}
      */
     public static final class Builder extends
@@ -522,12 +542,20 @@ public final class Tasks {
 
       private long id_ ;
       /**
+       * <pre>
+       *id is the id of the task to retrieve
+       * </pre>
+       *
        * <code>int64 id = 1;</code>
        */
       public long getId() {
         return id_;
       }
       /**
+       * <pre>
+       *id is the id of the task to retrieve
+       * </pre>
+       *
        * <code>int64 id = 1;</code>
        */
       public Builder setId(long value) {
@@ -537,6 +565,10 @@ public final class Tasks {
         return this;
       }
       /**
+       * <pre>
+       *id is the id of the task to retrieve
+       * </pre>
+       *
        * <code>int64 id = 1;</code>
        */
       public Builder clearId() {
@@ -657,6 +689,10 @@ public final class Tasks {
         getDueDateBytes();
   }
   /**
+   * <pre>
+   *Task is a generic task message
+   * </pre>
+   *
    * Protobuf type {@code tasks.Task}
    */
   public  static final class Task extends
@@ -1138,6 +1174,10 @@ public final class Tasks {
       return builder;
     }
     /**
+     * <pre>
+     *Task is a generic task message
+     * </pre>
+     *
      * Protobuf type {@code tasks.Task}
      */
     public static final class Builder extends
