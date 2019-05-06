@@ -39,12 +39,14 @@ generate:
       output: sdk/js/tasks
 
     - name: python
+      flags: plugins=grpc
       output: sdk/python/tasks
 
     - name: objc
       output: sdk/objc/tasks
 
     - name: ruby
+      flags: plugins=grpc
       output: sdk/ruby/tasks
 
     - name: cpp
