@@ -9,15 +9,17 @@
 - REST API address(this is a reverse proxy for the gRPC API for web clients): 35.238.49.10:8080
 
 ## REST endpoints:
-- http://35.238.49.10:8080/create
-- http://35.238.49.10:8080/read
-- http://35.238.49.10:8080/update
-- http://35.238.49.10:8080/delete
-- http://35.238.49.10:8080/list
+(all endpoints accept the JSON equivelant of the protobuf service described in the protocol docs)
 
-- http://35.238.49.10:8080/docs
-- http://35.238.49.10:8080/metrics
-- http://35.238.49.10:8080/debug/pprof/
+- http://35.238.49.10:8080/create (POST)
+- http://35.238.49.10:8080/read (POST)
+- http://35.238.49.10:8080/update (POST)
+- http://35.238.49.10:8080/delete (POST)
+- http://35.238.49.10:8080/list (GET)
+
+- http://35.238.49.10:8080/docs (GET)
+- http://35.238.49.10:8080/metrics (GET)
+- http://35.238.49.10:8080/debug/pprof/ (GET)
 
 
 
