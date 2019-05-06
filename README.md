@@ -25,30 +25,30 @@
 
 ### Independent Services
 - [x] Postgres (Kubernetes)
-- [x] GRPC API (Kubernetes) endpoint: 
-- [x] Rest Gateway API (Kubernetes) endpoint:
+- [x] GRPC API (Kubernetes)
+- [x] Rest Gateway API (Kubernetes)
 
 ### Documentation
 - [x] [GRPC Protocol Documentation]()
 
 ### Build/CI/Deployment
 
-- [x] [GRPC API Dockerfile]()
-- [x] [GRPC API Kubernetes Manifest]()
-- [x] [Rest Gateway API Dockerfile]()
-- [x] [Rest Gateway API Kubernetes Manifest]()
-- [x] [Makefile]()
-- [x] [Prototool-Protobuf build tool]()
+- [x] [GRPC API Dockerfile](https://github.com/autom8ter/tasks/blob/master/Dockerfile)
+- [x] [GRPC API Kubernetes Manifest](https://github.com/autom8ter/tasks/blob/master/tasks.yaml)
+- [x] [Rest Gateway API Dockerfile](https://github.com/autom8ter/tasks/blob/master/Dockerfile.proxy)
+- [x] [Rest Gateway API Kubernetes Manifest](https://github.com/autom8ter/tasks/blob/master/tasksproxy.yaml)
+- [x] [Makefile](https://github.com/autom8ter/tasks/blob/master/Makefile)
+- [x] [Prototool-Protobuf build tool](https://github.com/autom8ter/tasks/blob/master/prototool.yaml)
 
 ### SDK's
-- [x] [C++ SDK]()
-- [x] [C# SDK]()
-- [x] [Go SDK]()
-- [x] [Java SDK]()
-- [x] [Javascript SDK]()
-- [x] [Objective-C SDK]()
-- [x] [Python SDK]()
-- [x] [Ruby SDK]()
+- [x] [C++ SDK](https://github.com/autom8ter/tasks/tree/master/sdk/cpp/tasks)
+- [x] [C# SDK](https://github.com/autom8ter/tasks/tree/master/sdk/csharp/tasks)
+- [x] [Go SDK](https://github.com/autom8ter/tasks/tree/master/sdk/go/tasks)
+- [x] [Java SDK](https://github.com/autom8ter/tasks/tree/master/sdk/java/tasks/tasks)
+- [x] [Javascript SDK](https://github.com/autom8ter/tasks/tree/master/sdk/js/tasks)
+- [x] [Objective-C SDK](https://github.com/autom8ter/tasks/tree/master/sdk/objc/tasks)
+- [x] [Python SDK](https://github.com/autom8ter/tasks/tree/master/sdk/python/tasks)
+- [x] [Ruby SDK](https://github.com/autom8ter/tasks/tree/master/sdk/ruby/tasks)
 
 ### Methods
 - [x] Create Task   
