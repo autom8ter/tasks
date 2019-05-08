@@ -3,7 +3,6 @@
 package config
 
 import (
-	"github.com/autom8ter/tasks/functions"
 	"github.com/go-pg/pg"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
@@ -23,21 +22,12 @@ func (c *Config) Validate() error {
 	return valid.Struct(c)
 }
 
-type Option func(c *Config)
-
+//Config holds parameters for creating a Task server
 type Config struct {
 	DBConfig           *DBConfig
 	UnaryInterceptors  []grpc.UnaryServerInterceptor
 	StreamInterceptors []grpc.StreamServerInterceptor
 	Opts               []grpc.ServerOption
-}
-
-func NewConfig(opts ...Option) *Config {
-	c := &Config{}
-	for _, o := range opts {
-		o(c)
-	}
-	return c
 }
 
 func (c *Config) serverOptions() []grpc.ServerOption {
@@ -51,7 +41,10 @@ func (c *Config) serverOptions() []grpc.ServerOption {
 	)
 }
 
-func (c *Config) GRPCServer(grpcFunc functions.GrpcFunc) *grpc.Server {
+//GrpcFunc does something to a gRPC server
+type GrpcFunc func(s *grpc.Server)
+
+func (c *Config) GRPCServer(grpcFunc GrpcFunc) *grpc.Server {
 	s := grpc.NewServer(c.serverOptions()...)
 	grpcFunc(s)
 	return s
@@ -64,4 +57,14 @@ func (s *Config) PGOptions() *pg.Options {
 		Password: s.DBConfig.Password,
 		Database: s.DBConfig.Database,
 	}
+}
+
+type Option func(c *Config)
+
+func NewConfig(opts ...Option) *Config {
+	c := &Config{}
+	for _, o := range opts {
+		o(c)
+	}
+	return c
 }

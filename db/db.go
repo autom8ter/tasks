@@ -4,7 +4,7 @@ package db
 
 import (
 	"context"
-	"github.com/autom8ter/tasks/functions"
+	"github.com/autom8ter/tasks/config"
 	"github.com/autom8ter/tasks/sdk/go/tasks"
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
@@ -14,19 +14,18 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-var UNIMPLEMENTED_ERR = status.Error(codes.Unimplemented, "api is currently unimplemented")
+//DB_ERROR is wraps an error to indicate that it is database related
 var DB_ERROR = func(err error) error {
 	return status.Error(codes.Internal, "database error: "+err.Error())
 }
-var STREAM_ERROR = func(err error) error {
-	return status.Error(codes.Internal, "streaming error: "+err.Error())
-}
 
+//Database contains a Postgres DB connection along with a GrpcFunc which registers the Database to a gRPC server
 type Database struct {
 	db *pg.DB
-	functions.GrpcFunc
+	config.GrpcFunc
 }
 
+//List sends each task as a message in the gRPC stream server
 func (d *Database) List(e *empty.Empty, stream tasks.TaskService_ListServer) error {
 	tsks := []*Task{}
 	err := d.db.Model(&Task{}).Column("*").Select(&tsks)
@@ -42,6 +41,7 @@ func (d *Database) List(e *empty.Empty, stream tasks.TaskService_ListServer) err
 	return nil
 }
 
+//Task is just a cleaned version of the Task protobuf message for database transactions
 type Task struct {
 	Id       int    `json:"id"`
 	Title    string `json:"title"`
@@ -51,6 +51,7 @@ type Task struct {
 	DueDate  string `json:"due_date"`
 }
 
+//TaskFromTask converts a protobuf Task message into a clean Task for database transactions
 func TaskFromTask(t *tasks.Task) *Task {
 	return &Task{
 		Id:       int(t.Id),
@@ -62,6 +63,7 @@ func TaskFromTask(t *tasks.Task) *Task {
 	}
 }
 
+//ToTask converts the cleaned Task into a protbuf Task message
 func (t *Task) ToTask() *tasks.Task {
 	var pri tasks.Priority
 	switch t.Priority {
@@ -82,6 +84,7 @@ func (t *Task) ToTask() *tasks.Task {
 	}
 }
 
+//NewDatabase creates a new Database from postgres options and the generated RegisterTaskServiceServer function
 func NewDatabase(opts *pg.Options) *Database {
 	db := pg.Connect(opts)
 	d := &Database{
@@ -93,6 +96,7 @@ func NewDatabase(opts *pg.Options) *Database {
 	return d
 }
 
+//Init initializes a Task table in the database
 func (d *Database) Init() error {
 	for _, model := range []interface{}{(*Task)(nil)} {
 		err := d.db.CreateTable(model, &orm.CreateTableOptions{
@@ -107,6 +111,7 @@ func (d *Database) Init() error {
 	return nil
 }
 
+//Read returns a Task by ID
 func (d *Database) Read(ctx context.Context, i *tasks.IDRequest) (*tasks.Task, error) {
 	t, err := d.selectById(int(i.Id))
 	if err != nil {
@@ -116,6 +121,7 @@ func (d *Database) Read(ctx context.Context, i *tasks.IDRequest) (*tasks.Task, e
 	return t, nil
 }
 
+//Create inserts a Task in the database from the received Task message and then returns it.
 func (d *Database) Create(ctx context.Context, t *tasks.Task) (*tasks.Task, error) {
 	err := d.insertTask(t)
 	if err != nil {
@@ -124,6 +130,7 @@ func (d *Database) Create(ctx context.Context, t *tasks.Task) (*tasks.Task, erro
 	return t, nil
 }
 
+//Update coverts a protobuf Task into a cleaned Task, and then overwrites the existing entry(by ID)
 func (d *Database) Update(ctx context.Context, t *tasks.Task) (*empty.Empty, error) {
 	err := d.updateTask(t)
 	if err != nil {
@@ -132,6 +139,7 @@ func (d *Database) Update(ctx context.Context, t *tasks.Task) (*empty.Empty, err
 	return &empty.Empty{}, nil
 }
 
+//Delete deletes the Task with the received ID
 func (d *Database) Delete(ctx context.Context, i *tasks.IDRequest) (*empty.Empty, error) {
 	err := d.deleteTask(i.Id)
 	if err != nil {

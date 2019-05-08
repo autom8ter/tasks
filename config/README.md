@@ -16,6 +16,7 @@ type Config struct {
 }
 ```
 
+Config holds parameters for creating a Task server
 
 #### func  NewConfig
 
@@ -26,7 +27,7 @@ func NewConfig(opts ...Option) *Config
 #### func (*Config) GRPCServer
 
 ```go
-func (c *Config) GRPCServer(grpcFunc functions.GrpcFunc) *grpc.Server
+func (c *Config) GRPCServer(grpcFunc GrpcFunc) *grpc.Server
 ```
 
 #### func (*Config) PGOptions
@@ -52,6 +53,14 @@ type DBConfig struct {
 }
 ```
 
+
+#### type GrpcFunc
+
+```go
+type GrpcFunc func(s *grpc.Server)
+```
+
+GrpcFunc does something to a gRPC server
 
 #### type Option
 
