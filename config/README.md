@@ -29,12 +29,15 @@ func NewConfig(opts ...Option) *Config
 ```go
 func (c *Config) GRPCServer(grpcFunc GrpcFunc) *grpc.Server
 ```
+GrpcServer creates a grpc server from the configurations server options,
+interceptors, and the provided GRPCRunc
 
 #### func (*Config) PGOptions
 
 ```go
 func (s *Config) PGOptions() *pg.Options
 ```
+PGOptions returns postgres options used for creating a database connection
 
 #### func (*Config) Validate
 
@@ -74,21 +77,28 @@ type Option func(c *Config)
 ```go
 func WithDBConfig(cfg *DBConfig) Option
 ```
+WithDBConfig adds the provided DBConfig to a configuration
 
 #### func  WithServerOptions
 
 ```go
 func WithServerOptions(opts ...grpc.ServerOption) Option
 ```
+WithServerOptions adds the provided gRPC server options(variadic) to a
+configuration
 
 #### func  WithStreamInterceptors
 
 ```go
 func WithStreamInterceptors(interceptors ...grpc.StreamServerInterceptor) Option
 ```
+WithStreamInterceptors adds the provided gRPC stream server
+interceptors(variadic) to a configuration
 
 #### func  WithUnaryInterceptors
 
 ```go
 func WithUnaryInterceptors(interceptors ...grpc.UnaryServerInterceptor) Option
 ```
+WithUnaryInterceptors adds the provided gRPC unary server interceptors(variadic)
+to a configuration
