@@ -30,7 +30,7 @@ type Config struct {
 	Opts               []grpc.ServerOption
 }
 
-func (c *Config) serverOptions() []grpc.ServerOption {
+func (c *Config) ServerOptions() []grpc.ServerOption {
 	return append(
 		[]grpc.ServerOption{
 			grpc_middleware.WithUnaryServerChain(c.UnaryInterceptors...),
@@ -41,16 +41,6 @@ func (c *Config) serverOptions() []grpc.ServerOption {
 	)
 }
 
-//GrpcFunc does something to a gRPC server
-type GrpcFunc func(s *grpc.Server)
-
-//GrpcServer creates a grpc server from the configurations server options, interceptors, and the provided GRPCRunc
-func (c *Config) GRPCServer(grpcFunc GrpcFunc) *grpc.Server {
-	s := grpc.NewServer(c.serverOptions()...)
-	grpcFunc(s)
-	return s
-}
-
 //PGOptions returns postgres options used for creating a database connection
 func (s *Config) PGOptions() *pg.Options {
 	return &pg.Options{
@@ -59,14 +49,4 @@ func (s *Config) PGOptions() *pg.Options {
 		Password: s.DBConfig.Password,
 		Database: s.DBConfig.Database,
 	}
-}
-
-type Option func(c *Config)
-
-func NewConfig(opts ...Option) *Config {
-	c := &Config{}
-	for _, o := range opts {
-		o(c)
-	}
-	return c
 }

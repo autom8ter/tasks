@@ -7,13 +7,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var cfgFile string
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use: "tasks",
 	Long: `
-                                                                                         
+------------------------------------------------------------------------------------------ 
 TTTTTTTTTTTTTTTTTTTTTTT                                kkkkkkkk                          
 T:::::::::::::::::::::T                                k::::::k                          
 T:::::::::::::::::::::T                                k::::::k                          
@@ -30,7 +28,9 @@ TTTTTT  T:::::T  TTTTTTaaaaaaaaaaaaa      ssssssssss    k:::::k    kkkkkkk  ssss
       T:::::::::T    a:::::aaaa::::::as::::::::::::::s k::::::k  k:::::ks::::::::::::::s 
       T:::::::::T     a::::::::::aa:::as:::::::::::ss  k::::::k   k:::::ks:::::::::::ss  
       TTTTTTTTTTT      aaaaaaaaaa  aaaa sssssssssss    kkkkkkkk    kkkkkkksssssssssss    
+------------------------------------------------------------------------------------------
 
+A gRPC powered task management server
 `,
 }
 
@@ -41,7 +41,4 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-}
-
-func init() {
 }

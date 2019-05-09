@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/autom8ter/tasks/config"
-	"github.com/autom8ter/tasks/service"
+	"github.com/autom8ter/tasks/pkg/config"
+	"github.com/autom8ter/tasks/pkg/functions"
+	"github.com/autom8ter/tasks/pkg/service"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
@@ -20,7 +21,7 @@ var serveCmd = &cobra.Command{
 	Short: "start the tasks server",
 	Run: func(cmd *cobra.Command, args []string) {
 		svc, err := service.NewService(
-			config.WithDBConfig(dbCfg),
+			functions.WithDBConfig(dbCfg),
 		)
 		if err != nil {
 			log.Fatalln(err.Error())

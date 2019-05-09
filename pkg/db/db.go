@@ -4,7 +4,7 @@ package db
 
 import (
 	"context"
-	"github.com/autom8ter/tasks/config"
+	"github.com/autom8ter/tasks/pkg/functions"
 	"github.com/autom8ter/tasks/sdk/go/tasks"
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
@@ -22,7 +22,7 @@ var DB_ERROR = func(err error) error {
 //Database contains a Postgres DB connection along with a GrpcFunc which registers the Database to a gRPC server
 type Database struct {
 	db *pg.DB
-	config.GrpcFunc
+	functions.GrpcFunc
 }
 
 //List sends each task as a message in the gRPC stream server

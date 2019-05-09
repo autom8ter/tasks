@@ -1,6 +1,6 @@
 # db
 --
-    import "github.com/autom8ter/tasks/db"
+    import "github.com/autom8ter/tasks/pkg/db"
 
 
 ## Usage
@@ -16,7 +16,7 @@ DB_ERROR is wraps an error to indicate that it is database related
 
 ```go
 type Database struct {
-	config.GrpcFunc
+	functions.GrpcFunc
 }
 ```
 

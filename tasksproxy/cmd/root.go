@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/autom8ter/tasks/pkg/proxy"
 	"github.com/autom8ter/tasks/sdk/go/tasks"
 	"google.golang.org/grpc"
 	"log"
@@ -13,6 +14,7 @@ import (
 const apiAddr = "104.198.16.50:8080"
 
 var client tasks.TaskServiceClient
+var proxyy *proxy.Proxy
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

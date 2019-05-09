@@ -2,8 +2,8 @@ package service
 
 import (
 	"fmt"
-	"github.com/autom8ter/tasks/config"
-	"github.com/autom8ter/tasks/db"
+	"github.com/autom8ter/tasks/pkg/db"
+	"github.com/autom8ter/tasks/pkg/functions"
 	"google.golang.org/grpc"
 	"net"
 )
@@ -15,8 +15,8 @@ type Service struct {
 }
 
 //NewService creates a new Service from config options
-func NewService(opts ...config.Option) (*Service, error) {
-	c := config.NewConfig(opts...)
+func NewService(fn ...functions.ConfigFunc) (*Service, error) {
+	c := functions.NewConfig(fn...)
 	if err := c.Validate(); err != nil {
 		return nil, err
 	}
@@ -27,7 +27,7 @@ func NewService(opts ...config.Option) (*Service, error) {
 	}
 	return &Service{
 		database:   d,
-		grpcServer: c.GRPCServer(d.GrpcFunc),
+		grpcServer: d.GRPCServer(c),
 	}, nil
 }
 
