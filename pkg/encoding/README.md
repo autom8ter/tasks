@@ -1,9 +1,11 @@
-//go:generate godocdown -o README.md
+# encoding
+--
+    import "github.com/autom8ter/tasks/pkg/encoding"
 
-package encoding
 
-import "github.com/gogo/protobuf/jsonpb"
+## Usage
 
+```go
 var (
 	PBJSONMarshaler = &jsonpb.Marshaler{
 		Indent: "  ",
@@ -12,3 +14,4 @@ var (
 		AllowUnknownFields: false,
 	}
 )
+```

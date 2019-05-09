@@ -108,4 +108,6 @@ update:  update kube deployment
 - [ ] add more mock data
 - [ ] add example curl commands
 - [ ] add example grpc client services
+- [ ] add kuberesolver ref:https://github.com/sercand/kuberesolver
+
 
