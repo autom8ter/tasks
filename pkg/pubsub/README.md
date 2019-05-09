@@ -37,6 +37,12 @@ func (n *Nats) NewInbox() string
 func (n *Nats) ProtoToMsg(msg *any.Any, reply string) *nats.Msg
 ```
 
+#### func (*Nats) ProtoToSubscription
+
+```go
+func (n *Nats) ProtoToSubscription(msg *any.Any, queue string) *nats.Subscription
+```
+
 #### func (*Nats) Publish
 
 ```go

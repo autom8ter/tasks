@@ -38,6 +38,13 @@ func (n *Nats) ProtoToMsg(msg *any.Any, reply string) *nats.Msg {
 	}
 }
 
+func (n *Nats) ProtoToSubscription(msg *any.Any, queue string) *nats.Subscription {
+	return &nats.Subscription{
+		Subject: msg.GetTypeUrl(),
+		Queue:   queue,
+	}
+}
+
 func (n *Nats) NewInbox() string {
 	return nats.NewInbox()
 }
