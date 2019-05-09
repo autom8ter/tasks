@@ -11,6 +11,26 @@
 func NewConfig(opts ...ConfigFunc) *config.Config
 ```
 
+#### type AuthFunc
+
+```go
+type AuthFunc func() string
+```
+
+
+#### func (AuthFunc) AsNatsHandler
+
+```go
+func (a AuthFunc) AsNatsHandler() nats.AuthTokenHandler
+```
+
+#### type BasicFunc
+
+```go
+type BasicFunc func()
+```
+
+
 #### type ConfigFunc
 
 ```go

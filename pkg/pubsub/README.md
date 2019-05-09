@@ -19,8 +19,32 @@ type Nats struct {
 func NewNats(url string, opts ...nats.Option) (*Nats, error)
 ```
 
+#### func (*Nats) Auth
+
+```go
+func (n *Nats) Auth(authFunc functions.AuthFunc) nats.AuthTokenHandler
+```
+
+#### func (*Nats) NewInbox
+
+```go
+func (n *Nats) NewInbox() string
+```
+
+#### func (*Nats) ProtoToMsg
+
+```go
+func (n *Nats) ProtoToMsg(msg *any.Any, reply string) *nats.Msg
+```
+
 #### func (*Nats) Publish
 
 ```go
 func (n *Nats) Publish(msg *any.Any) error
+```
+
+#### func (*Nats) SubscriptionBarrier
+
+```go
+func (n *Nats) SubscriptionBarrier(basicFunc functions.BasicFunc) error
 ```

@@ -30,10 +30,18 @@ func (n *Nats) SubscriptionBarrier(basicFunc functions.BasicFunc) error {
 	return n.conn.Barrier(basicFunc)
 }
 
-func ProtoToMsg(msg *any.Any, reply string) *nats.Msg {
+func (n *Nats) ProtoToMsg(msg *any.Any, reply string) *nats.Msg {
 	return &nats.Msg{
 		Subject: msg.GetTypeUrl(),
 		Reply:   reply,
 		Data:    msg.GetValue(),
 	}
+}
+
+func (n *Nats) NewInbox() string {
+	return nats.NewInbox()
+}
+
+func (n *Nats) Auth(authFunc functions.AuthFunc) nats.AuthTokenHandler {
+	return authFunc.AsNatsHandler()
 }

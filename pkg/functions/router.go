@@ -2,7 +2,7 @@ package functions
 
 import (
 	"github.com/autom8ter/tasks/docs"
-	"github.com/autom8ter/tasks/pkg/encoding"
+	"github.com/autom8ter/tasks/pkg/util"
 	"github.com/autom8ter/tasks/sdk/go/tasks"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/gorilla/mux"
@@ -117,7 +117,7 @@ func WithTaskList(client tasks.TaskServiceClient) RouterFunc {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 					return
 				}
-				str, err := encoding.PBJSONMarshaler.MarshalToString(tsk)
+				str, err := util.PBJSONMarshaler.MarshalToString(tsk)
 				if err != nil {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 					return
@@ -148,7 +148,7 @@ func WithTaskCreate(client tasks.TaskServiceClient) RouterFunc {
 			}
 			tsk := &tasks.Task{}
 			defer r.Body.Close()
-			err := encoding.PBJSONUnmarshaler.Unmarshal(r.Body, tsk)
+			err := util.PBJSONUnmarshaler.Unmarshal(r.Body, tsk)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -158,7 +158,7 @@ func WithTaskCreate(client tasks.TaskServiceClient) RouterFunc {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			str, err := encoding.PBJSONMarshaler.MarshalToString(resp)
+			str, err := util.PBJSONMarshaler.MarshalToString(resp)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -181,7 +181,7 @@ func WithTaskDelete(client tasks.TaskServiceClient) RouterFunc {
 			}
 			id := &tasks.IDRequest{}
 			defer r.Body.Close()
-			err := encoding.PBJSONUnmarshaler.Unmarshal(r.Body, id)
+			err := util.PBJSONUnmarshaler.Unmarshal(r.Body, id)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -191,7 +191,7 @@ func WithTaskDelete(client tasks.TaskServiceClient) RouterFunc {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			str, err := encoding.PBJSONMarshaler.MarshalToString(resp)
+			str, err := util.PBJSONMarshaler.MarshalToString(resp)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -214,7 +214,7 @@ func WithTaskRead(client tasks.TaskServiceClient) RouterFunc {
 			}
 			id := &tasks.IDRequest{}
 			defer r.Body.Close()
-			err := encoding.PBJSONUnmarshaler.Unmarshal(r.Body, id)
+			err := util.PBJSONUnmarshaler.Unmarshal(r.Body, id)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -224,7 +224,7 @@ func WithTaskRead(client tasks.TaskServiceClient) RouterFunc {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			str, err := encoding.PBJSONMarshaler.MarshalToString(resp)
+			str, err := util.PBJSONMarshaler.MarshalToString(resp)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
